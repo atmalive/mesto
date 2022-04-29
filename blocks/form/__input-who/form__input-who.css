@@ -1,0 +1,25 @@
+.form__input-who {
+    width: 358px;
+    height: 27px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    margin: 0 0 48px;
+}
+
+.form__input-who::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.22;
+    color: #000000;
+}
+
+.form__input-who:focus {
+    outline: none;
+}
+
+@media screen and (max-width: 690px) {
+    .form__input-who {
+        width: 238px;
+        margin: 0 0 45px;
+    }
+}

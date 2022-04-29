@@ -2,6 +2,8 @@
 @import url('../vendor/font/inter.css');
 @import url('../blocks/body/body.css');
 @import url('../blocks/page/page.css');
+@import url('../blocks/page/page.css');
+@import url('../blocks/page/_opacity/page_opacity.css');
 @import url('../blocks/main/main.css');
 
 @import url('../blocks/header/header.css');
@@ -16,7 +18,6 @@
 @import url('../blocks/profile/__edit-button/profile__edit-button.css');
 @import url('../blocks/profile/__add-button/profile__add-button.css');
 
-
 @import url('../blocks/elements/elements.css');
 @import url('../blocks/element/element.css');
 @import url('../blocks/element/__text-like/element__text-like.css');
@@ -27,3 +28,11 @@
 
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
+
+@import url('../blocks/form/form.css');
+@import url('../blocks/form/_opened/form_opened.css');
+@import url('../blocks/form/__text/form__text.css');
+@import url('../blocks/form/__input-name/form__input-name.css');
+@import url('../blocks/form/__input-who/form__input-who.css');
+@import url('../blocks/form/__button/form__button.css');
+@import url('../blocks/form/__close-button/form__close-button.css');

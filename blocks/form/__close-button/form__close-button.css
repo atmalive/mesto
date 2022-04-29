@@ -1,0 +1,59 @@
+.form__close-button {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: -11%;
+    right: -9.5%;
+    background-color: transparent;
+    border: none;
+    transition: 0.7s;
+}
+
+
+
+.form__close-button::before {
+    content: '';
+    position: absolute;
+    border-bottom: 4px solid #fff;
+    width: 32px;
+    top: 31%;
+    right: -7.5%;
+    transform: rotate(45deg);
+}
+
+.form__close-button::after {
+    content: '';
+    position: absolute;
+    border-left: 4px solid #fff;
+    height: 32px;
+    top: -11.2%;
+    transform: rotate(45deg);
+    rotate: 45%;
+}
+
+.form__close-button:hover {
+    transform: scale(1.1) rotate(90deg);
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 690px) {
+    .form__close-button {
+        width: 20px;
+        height: 20px;
+        top: -9%;
+        right: 0;
+    }
+
+    .form__close-button::before {
+        content: '';
+        width: 20px;
+        top: 30%;
+        right: -11.5%;
+    }
+    
+    .form__close-button::after {
+        content: '';
+        height: 20px;
+        top: -10.2%;
+    }
+}
