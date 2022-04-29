@@ -6,7 +6,6 @@
     align-items: center;
     width: 24px;
     height: 24px;
-    z-index: 1;
     margin-top: 15px;
     transition: 0.6s;
 }

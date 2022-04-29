@@ -1,20 +1,38 @@
 const buttonEdit = document.querySelector(".profile__edit-button");
 const form = document.querySelector(".form");
-const pageOpacity = document.querySelector(".page");
 const formCloseButton = document.querySelector(".form__close-button");
+const nameInput = document.querySelector('.form__input-name');
+const whoInput = document.querySelector('.form__input-who');
+const profileTitle = document.querySelector('.profile__title');
+const profileSubtitle = document.querySelector('.profile__subtitle');
+const submitButton = document.querySelector('.form__button');
 
-
-
-function openClosePop() {
+function openPop() {
     event.preventDefault();
-    if (form.classList.contains('form_opened')) {
-        form.classList.remove('form_opened');
-        pageOpacity.classList.remove('page_opacity');
-    } else {
+        nameInput.value = profileTitle.textContent;
+        whoInput.value = profileSubtitle.textContent;
         form.classList.add('form_opened');
-        pageOpacity.classList.add('page_opacity');
+}
+
+function ClosePop() {
+    event.preventDefault();
+        form.classList.remove('form_opened');
+}
+
+function CloseOpacity() {
+    if (event.target === event.currentTarget) {
+        ClosePop();
     }
 }
 
-buttonEdit.addEventListener('click', openClosePop);
-formCloseButton.addEventListener('click', openClosePop);
+function submitChange() {
+    event.preventDefault();
+    profileTitle.textContent = nameInput.value;
+    profileSubtitle.textContent = whoInput.value;
+    ClosePop();
+}
+
+buttonEdit.addEventListener('click', openPop);
+formCloseButton.addEventListener('click', ClosePop);
+form.addEventListener('click', CloseOpacity);
+submitButton.addEventListener('click', submitChange);

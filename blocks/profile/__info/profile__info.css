@@ -2,6 +2,7 @@
     width: 336px;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     flex-basis: 60%;
 }
 
