@@ -1,10 +1,10 @@
 .page {
     max-width: 880px;
     width: 90%;
-    margin: 41px auto 60px;
+    margin: 45px auto 60px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
     background: #000000;
 }
@@ -13,6 +13,6 @@
 @media screen and (max-width: 690px) {
     .page {
         margin: 28px auto 36px;
-
+        width: 100%;
     }
 }

@@ -1,5 +1,6 @@
 .element__text-like {
     display: flex;
+    width: 100%;
     justify-content: space-around;
     align-items: center;
 }

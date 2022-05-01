@@ -1,10 +1,5 @@
 .profile__avatar {
     width: 120px;
     height: 120px;
-}
-
-@media screen and (max-width: 690px) {
-    .profile__avatar {
-        margin-bottom: 26px;
-    }
+    grid-area: avatar;
 }

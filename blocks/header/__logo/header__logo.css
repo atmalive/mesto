@@ -1,6 +1,7 @@
 .header__logo {
     max-width: 142px;
-    margin-bottom: 41px;
+    max-height: 33px;
+    padding-bottom: 35px;
     transition: 0.6s;
 }
 
@@ -11,8 +12,9 @@
 
 @media screen and (max-width: 690px) {
     .header__logo {
-        width: 103.74px;
-        height: 24.4px;
-        margin-bottom: 31.6px;
+        max-width: 103.74px;
+        max-height: 24.4px;
+        padding-bottom: 27.6px;
+        margin-left: 27px;
     }
 }
