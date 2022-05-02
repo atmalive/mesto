@@ -1,24 +1,23 @@
-.form__input-name {
+.popup__input {
     width: 358px;
     height: 27px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    margin: 0 0 30px;
 }
 
-.form__input-name::placeholder {
+.popup__input::placeholder {
     font-weight: 400;
     font-size: 14px;
     line-height: 1.22;
     color: #000000;
 }
 
-.form__input-name:focus {
+.popup__input:focus {
     outline: none;
 }
 
 @media screen and (max-width: 690px) {
-    .form__input-name {
+    .popup__input {
         width: 238px;
     }
 }
