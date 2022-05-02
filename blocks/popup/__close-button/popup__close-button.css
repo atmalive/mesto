@@ -7,6 +7,7 @@
     background-color: transparent;
     border: none;
     transition: 0.7s;
+    cursor: pointer;
 }
 
 
@@ -43,7 +44,7 @@
         height: 20px;
         top: -11%;
         right: 4px;
-    }
+}
 
     .popup__close-button::before {
         content: '';
