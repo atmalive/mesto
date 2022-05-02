@@ -12,6 +12,13 @@
     text-overflow:  ellipsis;
 }
 
+@media screen and (max-width: 800px) {
+    .profile__title {
+        max-width: 300px;
+        min-width: 100px;
+    }
+}
+
 @media screen and (max-width: 690px) {
     .profile__title {
         font-size: 27px;

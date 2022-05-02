@@ -1,19 +1,19 @@
 const buttonEdit = document.querySelector(".profile__edit-button");
-const form = document.querySelector(".form");
-const formCloseButton = document.querySelector(".form__close-button");
-const nameInput = document.querySelector('.form__input-name');
-const whoInput = document.querySelector('.form__input-who');
+const popup = document.querySelector(".popup");
+const popupCloseButton = document.querySelector(".popup__close-button");
+const popInputName = document.querySelector('.popup__input_type_name');
+const popInputJob = document.querySelector('.popup__input_type_job');
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 
 function openPop() {
-        nameInput.value = profileTitle.textContent;
-        whoInput.value = profileSubtitle.textContent;
-        form.classList.add('form_opened');
+        popInputName.value = profileTitle.textContent;
+        popInputJob.value = profileSubtitle.textContent;
+        popup.classList.add('popup_open');
 }
 
 function ClosePop() {
-        form.classList.remove('form_opened');
+        popup.classList.remove('popup_open');
 }
 
 // function CloseOpacity() {
@@ -24,12 +24,12 @@ function ClosePop() {
 
 function submitChange(event) {
     event.preventDefault();
-    profileTitle.textContent = nameInput.value;
-    profileSubtitle.textContent = whoInput.value;
+    profileTitle.textContent = popInputName.value;
+    profileSubtitle.textContent = popInputJob.value;
     ClosePop();
 }
 
 buttonEdit.addEventListener('click', openPop);
-formCloseButton.addEventListener('click', ClosePop);
+popupCloseButton.addEventListener('click', ClosePop);
 // form.addEventListener('click', CloseOpacity);
-form.addEventListener('submit', submitChange);
+popup.addEventListener('submit', submitChange);
