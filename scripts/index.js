@@ -5,6 +5,7 @@ const popInputName = document.querySelector('.popup__input_type_name');
 const popInputJob = document.querySelector('.popup__input_type_job');
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
+const popupForm = document.querySelector('.popup__inputs');
 
 function openPop() {
         popInputName.value = profileTitle.textContent;
@@ -32,4 +33,4 @@ function submitChange(event) {
 buttonEdit.addEventListener('click', openPop);
 popupCloseButton.addEventListener('click', ClosePop);
 // form.addEventListener('click', CloseOpacity);
-popup.addEventListener('submit', submitChange);
+popupForm.addEventListener('submit', submitChange);

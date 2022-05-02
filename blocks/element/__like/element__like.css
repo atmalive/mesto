@@ -1,4 +1,9 @@
 .element__like {
+    background: url('../../../images/like.svg') no-repeat center;
+    width: 22px;
+    height: 19px;
+    border: none;
+    box-sizing: border-box;
     transition: 0.6s;
 }
 
