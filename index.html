@@ -24,10 +24,11 @@
             </section>
             <section class="elements">
                 <div class="element">
+                    <button class="element__trash" aria-label="trash" type="button"></button>
                     <img src="./images/chertanovo.webp" alt="Чертаново" class="element__picture">
                     <div class="element__text-like">
                         <h2 class="element__text">Чертаново</h2>
-                        <button class="element__like" aria-label="like" type="button"></button>
+                        <button class="element__like element__like_active" aria-label="like" type="button"></button>
                     </div>
                 </div>
                 <div class="element">
@@ -71,7 +72,7 @@
             <p class="footer__copyright">© 2022 Mesto Russia</p>
         </footer>
     </div>
-    <div class="popup">
+    <div class="popup popup_type_info">
         <div class="popup__container">
             <h3 class="popup__text">Редактировать профиль</h3>
             <form class="popup__inputs" name="submitPopupInputs"> 
@@ -81,6 +82,26 @@
             </form>
             <button class="popup__close-button" type="button" aria-label="close popup"></button>
         </div>
+    </div>
+
+    <div class="popup popup_type_mesto">
+        <div class="popup__container">
+            <h3 class="popup__text">Новое место</h3>
+            <form class="popup__inputs" name="submitPopupInputs"> 
+                <input class="popup__input popup__input_mesto popup__input_type_name" name="submitPopupName" placeholder="Название" type="text">
+                <input class="popup__input popup__input_mesto popup__input_type_job" name="submitPopupJob" placeholder="Ссылка на картинку" type="text">
+                <button class="popup__button" type="submit">Создать</button>         
+            </form>
+            <button class="popup__close-button" type="button" aria-label="close popup"></button>
+        </div>
+    </div>
+
+    <div class="popup popup_type_img">
+        <figure class="popup__figure">
+            <img src="./images/sukko.webp" alt="картинка в попапе" class="popup__img">
+            <figcaption class="popup__subtitle">Монтенегро</figcaption>
+            <button class="popup__close-button popup__close-button_figure" type="button" aria-label="close popup"></button>
+        </figure>
     </div>
     <script src="./scripts/index.js"></script>
 </body>

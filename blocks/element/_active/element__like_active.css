@@ -1,0 +1,13 @@
+.element__like_active {
+    background: url('../../../images/likeactive.svg') no-repeat center;
+    width: 22px;
+    height: 19px;
+    border: none;
+    box-sizing: border-box;
+    transition: 0.6s;
+}
+
+.element__like_active:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
