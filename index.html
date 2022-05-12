@@ -23,49 +23,6 @@
                 <button class="profile__add-button" aria-label="add picture" type="button"></button>
             </section>
             <section class="elements">
-                <div class="element">
-                    <button class="element__trash" aria-label="trash" type="button"></button>
-                    <img src="./images/chertanovo.webp" alt="Чертаново" class="element__picture">
-                    <div class="element__text-like">
-                        <h2 class="element__text">Чертаново</h2>
-                        <button class="element__like element__like_active" aria-label="like" type="button"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img src="./images/bosnia.webp" alt="Босния" class="element__picture">
-                    <div class="element__text-like">
-                        <h2 class="element__text">Босния</h2>
-                        <button class="element__like" aria-label="like" type="button"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img src="./images/podgorica1.webp" alt="Подгорица" class="element__picture">
-                    <div class="element__text-like">
-                        <h2 class="element__text">Подгорица</h2>
-                        <button class="element__like" aria-label="like" type="button"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img src="./images/podgorica.webp" alt="Подгорица" class="element__picture">
-                    <div class="element__text-like">
-                        <h2 class="element__text">Подгорица</h2>
-                        <button class="element__like" aria-label="like" type="button"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img src="./images/sochi.webp" alt="Сочи" class="element__picture">
-                    <div class="element__text-like">
-                        <h2 class="element__text">Сочи</h2>
-                        <button class="element__like" aria-label="like" type="button"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img src="./images/sukko.webp" alt="Сукко" class="element__picture">
-                    <div class="element__text-like">
-                        <h2 class="element__text">Сукко</h2>
-                        <button class="element__like" aria-label="like" type="button"></button>
-                    </div>
-                </div>
             </section>
         </main>
         <footer class="footer">
@@ -103,6 +60,18 @@
             <button class="popup__close-button popup__close-button_figure" type="button" aria-label="close popup"></button>
         </figure>
     </div>
+
+    
+    <template id="element-template">
+        <div class="element">
+            <button class="element__trash" aria-label="trash" type="button"></button>
+            <img src="#" alt="#" class="element__picture">
+            <div class="element__text-like">
+                <h2 class="element__text"></h2>
+                <button class="element__like" aria-label="like" type="button"></button>
+            </div>
+        </div>
+    </template>
     <script src="./scripts/index.js"></script>
 </body>
 </html>
