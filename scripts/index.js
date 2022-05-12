@@ -11,6 +11,8 @@ const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const popupForm = document.querySelector('.popup__inputs');
 
+
+
 // Закрытие на крестик
 function ClosePop(clPopup) {
         clPopup.classList.remove('popup_open');
@@ -28,7 +30,7 @@ function openPopAdd(openPopupAll) {
         popupCloseButton.addEventListener('click',()=> ClosePop(openPopupAll));
         openPopupAll.addEventListener('click',()=> CloseOpacity( openPopupAll));
 }
-
+// открытие инпутов
 function openInputInfo() {
         popInputName.value = profileTitle.textContent;
         popInputJob.value = profileSubtitle.textContent;
@@ -44,5 +46,21 @@ function submitChange(event) {
 
 buttonEdit.addEventListener('click', openInputInfo);
 buttonAdd.addEventListener('click',()=> openPopAdd(popupMesto));
-buttonEdit.addEventListener('click', openInputInfo);
 popupForm.addEventListener('submit', submitChange);
+
+
+
+const elementCard = document.querySelector('.element');
+
+elementCard.querySelector('.element__like').addEventListener('click',(evt)=> {
+        evt.target.classList.toggle('element__like_active');
+});
+
+
+// const songElement = songTemplate.querySelector('.song').cloneNode(true);
+
+// songElement.querySelector('.song__artist').textContent = artistValue;
+// songElement.querySelector('.song__title').textContent = titleValue;
+// songsContainer.append(songElement)
+// songElement.querySelector('.song__like').addEventListener('click', function (evt) {
+// evt.target.classList.toggle('song__like_active');
