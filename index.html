@@ -23,58 +23,16 @@
                 <button class="profile__add-button" aria-label="add picture" type="button"></button>
             </section>
             <section class="elements">
-                <div class="element">
-                    <img src="./images/chertanovo.webp" alt="Чертаново" class="element__picture">
-                    <div class="element__text-like">
-                        <h2 class="element__text">Чертаново</h2>
-                        <button class="element__like" aria-label="like" type="button"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img src="./images/bosnia.webp" alt="Босния" class="element__picture">
-                    <div class="element__text-like">
-                        <h2 class="element__text">Босния</h2>
-                        <button class="element__like" aria-label="like" type="button"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img src="./images/podgorica1.webp" alt="Подгорица" class="element__picture">
-                    <div class="element__text-like">
-                        <h2 class="element__text">Подгорица</h2>
-                        <button class="element__like" aria-label="like" type="button"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img src="./images/podgorica.webp" alt="Подгорица" class="element__picture">
-                    <div class="element__text-like">
-                        <h2 class="element__text">Подгорица</h2>
-                        <button class="element__like" aria-label="like" type="button"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img src="./images/sochi.webp" alt="Сочи" class="element__picture">
-                    <div class="element__text-like">
-                        <h2 class="element__text">Сочи</h2>
-                        <button class="element__like" aria-label="like" type="button"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img src="./images/sukko.webp" alt="Сукко" class="element__picture">
-                    <div class="element__text-like">
-                        <h2 class="element__text">Сукко</h2>
-                        <button class="element__like" aria-label="like" type="button"></button>
-                    </div>
-                </div>
             </section>
         </main>
         <footer class="footer">
             <p class="footer__copyright">© 2022 Mesto Russia</p>
         </footer>
     </div>
-    <div class="popup">
+    <div class="popup popup_type_info">
         <div class="popup__container">
             <h3 class="popup__text">Редактировать профиль</h3>
-            <form class="popup__inputs" name="submitPopupInputs"> 
+            <form class="popup__inputs popup__inputs_type_info" name="submitInfo"> 
                 <input class="popup__input popup__input_type_name" name="submitPopupName" placeholder="Жак-Ив Кусто" type="text">
                 <input class="popup__input popup__input_type_job" name="submitPopupJob" placeholder="Исследователь океана" type="text">
                 <button class="popup__button" type="submit">Сохранить</button>         
@@ -82,6 +40,38 @@
             <button class="popup__close-button" type="button" aria-label="close popup"></button>
         </div>
     </div>
+
+    <div class="popup popup_type_mesto">
+        <div class="popup__container">
+            <h3 class="popup__text">Новое место</h3>
+            <form class="popup__inputs popup__inputs_type_card" name="submitCard"> 
+                <input class="popup__input popup__input_mesto popup__input_mesto_name" name="submitPopupName" placeholder="Название" type="text">
+                <input class="popup__input popup__input_mesto popup__input_mesto_link" name="submitPopupJob" placeholder="Ссылка на картинку" type="text">
+                <button class="popup__button" type="submit">Создать</button>         
+            </form>
+            <button class="popup__close-button" type="button" aria-label="close popup"></button>
+        </div>
+    </div>
+
+    <div class="popup popup_type_img">
+        <figure class="popup__figure">
+            <img src="#" alt="#" class="popup__img">
+            <figcaption class="popup__subtitle"></figcaption>
+            <button class="popup__close-button popup__close-button_figure" type="button" aria-label="close popup"></button>
+        </figure>
+    </div>
+
+    
+    <template id="element-template">
+        <div class="element">
+            <button class="element__trash" aria-label="trash" type="button"></button>
+            <img src="#" alt="#" class="element__picture">
+            <div class="element__text-like">
+                <h2 class="element__text"></h2>
+                <button class="element__like" aria-label="like" type="button"></button>
+            </div>
+        </div>
+    </template>
     <script src="./scripts/index.js"></script>
 </body>
 </html>

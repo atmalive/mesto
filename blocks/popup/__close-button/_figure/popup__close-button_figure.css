@@ -1,0 +1,16 @@
+.popup__close-button_figure {
+    top: -35px;
+    right: -43px;
+    z-index: 3;
+}
+
+@media screen and (max-width: 500px) {
+    .popup__close-button_figure {
+        top: -33px;
+        right: 0;
+}
+
+.popup__close-button_figure::before {
+        content: '';
+        right: -12.5%;
+    }

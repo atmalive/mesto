@@ -5,8 +5,12 @@
     bottom: 0;
     right: 0;
     width: 100%;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.6s;
 }
