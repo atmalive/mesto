@@ -32,7 +32,7 @@
     <div class="popup popup_type_info">
         <div class="popup__container">
             <h3 class="popup__text">Редактировать профиль</h3>
-            <form class="popup__inputs" name="submitPopupInputs"> 
+            <form class="popup__inputs popup__inputs_type_info" name="submitInfo"> 
                 <input class="popup__input popup__input_type_name" name="submitPopupName" placeholder="Жак-Ив Кусто" type="text">
                 <input class="popup__input popup__input_type_job" name="submitPopupJob" placeholder="Исследователь океана" type="text">
                 <button class="popup__button" type="submit">Сохранить</button>         
@@ -44,9 +44,9 @@
     <div class="popup popup_type_mesto">
         <div class="popup__container">
             <h3 class="popup__text">Новое место</h3>
-            <form class="popup__inputs" name="submitPopupInputs"> 
-                <input class="popup__input popup__input_mesto popup__input_type_name" name="submitPopupName" placeholder="Название" type="text">
-                <input class="popup__input popup__input_mesto popup__input_type_job" name="submitPopupJob" placeholder="Ссылка на картинку" type="text">
+            <form class="popup__inputs popup__inputs_type_card" name="submitCard"> 
+                <input class="popup__input popup__input_mesto popup__input_mesto_name" name="submitPopupName" placeholder="Название" type="text">
+                <input class="popup__input popup__input_mesto popup__input_mesto_link" name="submitPopupJob" placeholder="Ссылка на картинку" type="text">
                 <button class="popup__button" type="submit">Создать</button>         
             </form>
             <button class="popup__close-button" type="button" aria-label="close popup"></button>
