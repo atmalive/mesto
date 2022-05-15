@@ -34,7 +34,7 @@ function addNewCard(name, link) {
   picture.alt = name;
   elementElement.querySelector(".element__text").textContent = name;
   buttonTrash.addEventListener("click", removeElement);
-  picture.addEventListener("click", openPopupImg);
+  picture.addEventListener("click",()=> openPopupImg(name, link));
   elementElement.querySelector(".element__like").addEventListener("click", toggleLike);
   return elementElement;
 };
@@ -79,10 +79,10 @@ function submitNewCard(event) {
   closePop(popupMesto);
 }
 
-function openPopupImg(evt) {
-  imgInfo.src = evt.target.src;
-  imgInfo.alt = evt.target.alt;
-  textInfo.textContent = evt.target.alt;
+function openPopupImg(name, link) {
+  imgInfo.src = link;
+  imgInfo.alt = name;
+  textInfo.textContent = name;
   openPopup(popupImg);
 }
 
