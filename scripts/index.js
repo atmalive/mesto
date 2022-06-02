@@ -43,9 +43,7 @@ function addNewCard(name, link) {
 function closePopup(popup) {
   popup.classList.remove("popup_open");
   popup.removeEventListener("click", handleCloseOpacity);
-  document.removeEventListener("keydown", () => {
-    handleCloseEscape(event, popup)
-  });
+  document.removeEventListener("keydown", handleCloseEscape);
 }
 // Закрытие на фон
 function handleCloseOpacity(event) {
@@ -57,18 +55,19 @@ function handleCloseOpacity(event) {
   }
 }
 
-const handleCloseEscape = (evt, popup) => {
+const handleCloseEscape = (evt) => {
   if (evt.key === 'Escape') {
+    const popup = document.querySelector(".popup_open");
     closePopup(popup)
+    console.log(popup)
   }
-}
+};
+
 // открытие popup на кнопку addbutton
 function openPopup(popupElement) {
   popupElement.classList.add("popup_open");
   popupElement.addEventListener("mousedown", handleCloseOpacity);
-  document.addEventListener("keydown", () => {
-    handleCloseEscape(event, popupElement)
-  });
+  document.addEventListener("keydown", handleCloseEscape);
 }
 // открытие инпутов
 function handleOpenPopupInfo() {
