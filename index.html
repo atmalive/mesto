@@ -32,19 +32,33 @@
     <div class="popup popup_type_info">
         <div class="popup__container">
             <h3 class="popup__text">Редактировать профиль</h3>
-            <form class="popup__inputs popup__inputs_type_info" name="submitInfo"> 
-                <input
+
+            <form class="popup__inputs popup__inputs_type_info" name="submitInfo" novalidate> 
+                <label for="submitPopupName" class="popup__label">
+                    <input
                     class="popup__input popup__input_type_name"
                     name="submitPopupName"
                     placeholder="Жак-Ив Кусто"
-                    type="text" required>
-                <input
+                    type="text" required
+                    minlength="2"
+                    maxlength="40"
+                    id="input-profile-name">
+                    <span class="popup__input-error input-profile-name-error"></span>
+                </label>
+                <label for="submitPopupJob" class="popup__label">
+                    <input
                     class="popup__input popup__input_type_job"
                     name="submitPopupJob"
                     placeholder="Исследователь океана"
-                    type="text" required>
+                    type="text" required
+                    minlength="2"
+                    maxlength="200"
+                    id="input-profile-description">
+                    <span class="popup__input-error input-profile-description-error"></span>
+                </label>
                 <button class="popup__button" type="submit">Сохранить</button>         
             </form>
+
             <button class="popup__close-button" type="button" aria-label="close popup"></button>
         </div>
     </div>
@@ -52,19 +66,32 @@
     <div class="popup popup_type_mesto">
         <div class="popup__container">
             <h3 class="popup__text">Новое место</h3>
-            <form class="popup__inputs popup__inputs_type_card" name="submitCard"> 
-                <input
+
+            <form class="popup__inputs popup__inputs_type_card" name="submitCard" novalidate> 
+                <label for="submitPopupName" class="popup__label">
+                    <input
                     class="popup__input popup__input_mesto popup__input_mesto_name"
                     name="submitPopupName"
                     placeholder="Название"
-                    type="text" required>
-                <input
+                    type="text" required
+                    minlength="2"
+                    maxlength="30"
+                    id="input-mesto-name">
+                    <span class="popup__input-error input-mesto-name-error"></span>
+                </label>
+                <label for="submitPopupJob" class="popup__label">
+                    <input
                     class="popup__input popup__input_mesto popup__input_mesto_link"
                     name="submitPopupJob"
                     placeholder="Ссылка на картинку"
-                    type="url" required>
+                    type="url" required
+                    id="input-mesto-link">
+                    <span class="popup__input-error input-mesto-link-error"></span>
+                </label>
+                
                 <button class="popup__button" type="submit">Создать</button>         
             </form>
+
             <button class="popup__close-button" type="button" aria-label="close popup"></button>
         </div>
     </div>
@@ -94,5 +121,6 @@
     </template>
     <script src="./scripts/cards.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 </html>
