@@ -23,7 +23,7 @@ const removeElement = (evt) => {
 
 function toggleLike(evt) {
   evt.target.classList.toggle("element__like_active");
-};
+}
 
 function addNewCard(name, link) {
   const clonedElement = elementElement.cloneNode(true);
@@ -37,7 +37,7 @@ function addNewCard(name, link) {
   picture.addEventListener("click",() => openPopupImg(name, link));
   clonedElement.querySelector(".element__like").addEventListener("click", toggleLike);
   return clonedElement;
-};
+}
 
 // закрытие
 function closePopup(popup) {
