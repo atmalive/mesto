@@ -59,7 +59,6 @@ const handleCloseEscape = (evt) => {
   if (evt.key === 'Escape') {
     const popup = document.querySelector(".popup_open");
     closePopup(popup)
-    console.log(popup)
   }
 };
 
