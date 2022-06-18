@@ -46,16 +46,21 @@ export class FormValidator {
       _setEventListeners(formElement) {
         //Создаем массив из инпутов
         const inputList = Array.from(formElement.querySelectorAll(this._settings.inputSelector));
-        const buttonElement = formElement.querySelector(this._settings.submitButtonSelector);
-        this._toggleButtonState(inputList, buttonElement);
+        this._buttonElement = formElement.querySelector(this._settings.submitButtonSelector);
+        this._toggleButtonState(inputList, this._buttonElement);
         //обходим их и добавляем обработчик
         inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 this._checkInputValidity(formElement, inputElement);
-                this._toggleButtonState(inputList, buttonElement);
+                this._toggleButtonState(inputList, this._buttonElement);
             });
         });
       };
+
+      resetValidation() {
+        this._buttonElement.setAttribute("disabled", "disabled");
+        this._buttonElement.classList.add(this._settings.inactiveButtonClass);
+      }      
 
       enableValidation() {
          this._setEventListeners(this._classForm); 

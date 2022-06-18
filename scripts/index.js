@@ -1,22 +1,7 @@
 import { Card } from './Card.js';
 import { openPopup, closePopup } from './popup.js';
 import { FormValidator } from './FormValidator.js';
-
-const buttonEdit = document.querySelector(".profile__edit-button");
-const buttonAdd = document.querySelector(".profile__add-button");
-const popupInfo = document.querySelector(".popup_type_info");
-const popupMesto = document.querySelector(".popup_type_mesto");
-const inputInfoName = document.querySelector(".popup__input_type_name");
-const inputInfoJob = document.querySelector(".popup__input_type_job");
-const popInputMestoName = document.querySelector(".popup__input_mesto_name");
-const popInputMestoLink = document.querySelector(".popup__input_mesto_link");
-const profileTitle = document.querySelector(".profile__title");
-const profileSubtitle = document.querySelector(".profile__subtitle");
-const elementsContainer = document.querySelector(".elements");
-const formInputsInfo = document.querySelector(".popup__inputs_type_info");
-const formInputsCard = document.querySelector(".popup__inputs_type_card");
-const elementTemplate = document.querySelector("#element-template").content;
-const elementElement = elementTemplate.querySelector(".element");
+import { buttonEdit, buttonAdd, popupInfo, popupMesto, inputInfoName, inputInfoJob, popInputMestoName, popInputMestoLink, profileTitle, profileSubtitle, elementsContainer, formInputsInfo, formInputsCard, elementTemplate, elementElement } from './constants.js';
 
 
 // открытие инпутов
@@ -37,21 +22,16 @@ buttonEdit.addEventListener("click", handleOpenPopupInfo);
 buttonAdd.addEventListener("click", () => openPopup(popupMesto));
 formInputsInfo.addEventListener("submit", submitChange);
 
-initialCards.forEach((item) => {    // бежим по массиву
-  const card = new Card(item.name, item.link, elementElement);  // создаем обьект класса карточки с передачей
-  const cardElement = card.addNewCard();
-  elementsContainer.append(cardElement);
-});
-
-function submitNewCard(event) {
-  event.preventDefault();
-  const classCard = new Card(popInputMestoName.value, popInputMestoLink.value, elementElement);
-  const card = classCard.addNewCard();
-  elementsContainer.prepend(card);
-  closePopup(popupMesto);
+function createCard(name, link) {
+  const card = new Card(name, link, elementElement);
+  const cardElement = card.createCard();
+  return cardElement;
 }
 
-formInputsCard.addEventListener("submit", submitNewCard);
+initialCards.forEach((item) => {   
+  const cardElement = createCard(item.name, item.link);
+  elementsContainer.append(cardElement);
+});
 
 const settings = {
   inputSelector: '.popup__input',
@@ -61,8 +41,19 @@ const settings = {
   errorClass: 'popup__input-error_active'
 };
 
-const forms = document.querySelectorAll('.popup__inputs');
-  forms.forEach((form) => {
-    const FormValidatorClass = new FormValidator(settings, form)
-    FormValidatorClass.enableValidation();
-  });
+const validationInfo = new FormValidator(settings, formInputsInfo);
+const validationCard = new FormValidator(settings, formInputsCard);
+validationInfo.enableValidation();
+validationCard.enableValidation();
+
+function submitNewCard(event) {
+  event.preventDefault();
+  const card = createCard(popInputMestoName.value, popInputMestoLink.value);
+  elementsContainer.prepend(card);
+  popInputMestoName.value = '';
+  popInputMestoLink.value = '';
+  validationCard.resetValidation()
+  closePopup(popupMesto);
+}
+
+formInputsCard.addEventListener("submit", submitNewCard);
