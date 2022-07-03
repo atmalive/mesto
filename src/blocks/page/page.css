@@ -4,11 +4,10 @@
     margin: 45px auto 60px;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     background: #000000;
 }
-
 
 @media screen and (max-width: 690px) {
     .page {

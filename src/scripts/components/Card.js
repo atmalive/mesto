@@ -1,5 +1,5 @@
-import { openPopup } from './popup.js';
-import { popupImg, imgInfo, textInfo } from './constants.js';
+import { openPopup } from '../popup.js';
+import { popupImg, imgInfo, textInfo } from '../constants.js';
 
 
 export class Card {

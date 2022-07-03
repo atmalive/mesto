@@ -1,8 +1,10 @@
-import { Card } from './Card.js';
+import { Card } from './components/Card.js';
 import { openPopup, closePopup } from './popup.js';
-import { FormValidator } from './FormValidator.js';
+import { FormValidator } from './components/FormValidator.js';
 import { buttonEdit, buttonAdd, popupInfo, popupMesto, inputInfoName, inputInfoJob, popInputMestoName, popInputMestoLink, profileTitle, profileSubtitle, elementsContainer, formInputsInfo, formInputsCard, elementTemplate, elementElement } from './constants.js';
-
+import { initialCards } from './cards.js';
+import '../pages/index.css';
+import Section from './components/Section.js';
 
 // открытие инпутов
 function handleOpenPopupInfo() {
@@ -52,7 +54,7 @@ function submitNewCard(event) {
   elementsContainer.prepend(card);
   popInputMestoName.value = '';
   popInputMestoLink.value = '';
-  validationCard.resetValidation()
+  validationCard.resetValidation();
   closePopup(popupMesto);
 }
 
