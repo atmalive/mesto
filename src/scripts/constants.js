@@ -1,20 +1,82 @@
-//index
-export const buttonEdit = document.querySelector(".profile__edit-button");
-export const buttonAdd = document.querySelector(".profile__add-button");
-export const popupInfo = document.querySelector(".popup_type_info");
-export const popupMesto = document.querySelector(".popup_type_mesto");
-export const inputInfoName = document.querySelector(".popup__input_type_name");
-export const inputInfoJob = document.querySelector(".popup__input_type_job");
-export const popInputMestoName = document.querySelector(".popup__input_mesto_name");
-export const popInputMestoLink = document.querySelector(".popup__input_mesto_link");
-export const profileTitle = document.querySelector(".profile__title");
-export const profileSubtitle = document.querySelector(".profile__subtitle");
-export const elementsContainer = document.querySelector(".elements");
-export const formInputsInfo = document.querySelector(".popup__inputs_type_info");
-export const formInputsCard = document.querySelector(".popup__inputs_type_card");
-export const elementTemplate = document.querySelector("#element-template").content;
-export const elementElement = elementTemplate.querySelector(".element");
-//Card
-export const popupImg = document.querySelector(".popup_type_img");
-export const imgInfo = popupImg.querySelector(".popup__img");
-export const textInfo = popupImg.querySelector(".popup__subtitle");
+const initialCards = [
+  {
+    name: "Архыз",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+  },
+  {
+    name: "Челябинская область",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+  },
+  {
+    name: "Иваново",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+  },
+  {
+    name: "Камчатка",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+  },
+  {
+    name: "Холмогорский район",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+  },
+  {
+    name: "Байкал",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+  },
+];
+
+const popup = document.querySelectorAll(".popup");
+
+const popupInfo = document.querySelector(".popup_type_info");
+const popupInfoCloseButton = popupInfo.querySelector(".popup__close-button");
+const popupSubmitButton = popupInfo.querySelector(".popup__button");
+const popupMesto = document.querySelector(".popup_type_mesto");
+const popupMestoCloseButton = popupMesto.querySelector(".popup__close-button");
+const popupImg = document.querySelector(".popup_type_img");
+const popupImgCloseButton = popupImg.querySelector(".popup__close-button");
+const imgInfo = popupImg.querySelector(".popup__img");
+const textInfo = popupImg.querySelector(".popup__subtitle");
+
+const profileEditButton = document.querySelector(".profile__edit-button");
+const cardsAddButton = document.querySelector(".profile__add-button");
+
+const profileTitle = document.querySelector(".profile__title");
+const profileSubtitle = document.querySelector(".profile__subtitle");
+
+const formElement = document.querySelectorAll(".popup__inputs");
+const formElementInfo = document.querySelector(".popup__inputs_type_info");
+const inputInfoName = formElementInfo.querySelector(".popup__input_type_name");
+const inputInfoJob = formElementInfo.querySelector(".popup__input_type_job");
+const formElementCard = document.querySelector(".popup__inputs_type_card");
+const inputCardName = formElementCard.querySelector(".popup__input_mesto_name");
+const inputCardLink = formElementCard.querySelector(".popup__input_mesto_link");
+
+const cardTemplate = document.querySelector("#element-template");
+const elementsContainer = document.querySelector(".elements");
+
+export {
+  popup,
+  popupInfo,
+  popupInfoCloseButton,
+  popupSubmitButton,
+  popupMesto,
+  popupMestoCloseButton,
+  popupImg,
+  popupImgCloseButton,
+  imgInfo,
+  textInfo,
+  profileEditButton,
+  cardsAddButton,
+  profileTitle,
+  profileSubtitle,
+  formElement,
+  formElementInfo,
+  inputInfoName,
+  inputInfoJob,
+  formElementCard,
+  inputCardName,
+  inputCardLink,
+  cardTemplate,
+  elementsContainer,
+  initialCards,
+};

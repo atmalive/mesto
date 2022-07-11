@@ -1,61 +1,99 @@
-import { Card } from './components/Card.js';
-import { openPopup, closePopup } from './popup.js';
-import { FormValidator } from './components/FormValidator.js';
-import { buttonEdit, buttonAdd, popupInfo, popupMesto, inputInfoName, inputInfoJob, popInputMestoName, popInputMestoLink, profileTitle, profileSubtitle, elementsContainer, formInputsInfo, formInputsCard, elementTemplate, elementElement } from './constants.js';
-import { initialCards } from './cards.js';
+import Card from "./components/Card.js";
+import FormValidator from "./components/FormValidator.js";
+import Section from "./components/Section.js";
+import PopupWithImage from "./components/PopupWithImage.js";
+import PopupWithForm from "./components/PopupWithForm.js";
+import UserInfo from "./components/UserInfo.js";
+import {
+  inputInfoName,
+  inputInfoJob,
+  inputCardName,
+  inputCardLink,
+  profileTitle,
+  profileSubtitle,
+  elementsContainer,
+  cardsAddButton,
+  profileEditButton,
+  formElementCard,
+  popupMesto,
+  popupInfo,
+  cardTemplate,
+  formElementInfo,
+  initialCards,
+  popupImg,
+} from "./constants.js";
 import '../pages/index.css';
-import Section from './components/Section.js';
 
-// открытие инпутов
-function handleOpenPopupInfo() {
-  inputInfoName.value = profileTitle.textContent;
-  inputInfoJob.value = profileSubtitle.textContent;
-  openPopup(popupInfo);
-}
-// сохранение инпутов
-function submitChange(event) {
-  event.preventDefault();
-  profileTitle.textContent = inputInfoName.value;
-  profileSubtitle.textContent = inputInfoJob.value;
-  closePopup(popupInfo);
-}
-
-buttonEdit.addEventListener("click", handleOpenPopupInfo);
-buttonAdd.addEventListener("click", () => openPopup(popupMesto));
-formInputsInfo.addEventListener("submit", submitChange);
+const imagePopup = new PopupWithImage(popupImg);
 
 function createCard(name, link) {
-  const card = new Card(name, link, elementElement);
-  const cardElement = card.createCard();
+  const card = new Card(name, link, cardTemplate, {
+    handleCardClick: () => imagePopup.openPopup(name, link),
+  });
+  const cardElement = card.addNewCard();
   return cardElement;
 }
 
-initialCards.forEach((item) => {   
-  const cardElement = createCard(item.name, item.link);
-  elementsContainer.append(cardElement);
+const userInfo = new UserInfo({
+  infoName: profileTitle,
+  infoJob: profileSubtitle,
 });
 
-const settings = {
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_inactive',
-  inputErrorClass: 'popup__input_border-error',
-  errorClass: 'popup__input-error_active'
+const formInfo = new PopupWithForm(popupInfo, {
+  submitForms: () => {
+    userInfo.setUserInfo(inputInfoName.value, inputInfoJob.value);
+  },
+});
+
+profileEditButton.addEventListener("click", () => {
+  formInfoValidation.resetInputs();
+  inputInfoName.value = userInfo.getUserInfo().name;
+  inputInfoJob.value = userInfo.getUserInfo().description;
+  formInfo.openPopup();
+});
+
+const cardForm = new PopupWithForm(popupMesto, {
+  submitForms: () => {
+    const newCardName = inputCardName.value;
+    const newCardLink = inputCardLink.value;
+    const card = createCard(newCardName, newCardLink);
+    section.addItem(card);
+  },
+});
+
+cardsAddButton.addEventListener("click", () => {
+  formCardValidation.resetInputs();
+  cardForm.openPopup();
+});
+
+// запуск рендера карточек из базы
+const section = new Section(
+  {
+    items: initialCards, //  копия класса Section, которая рендерит секцию с карточками
+    renderer: (name, link) => {
+      // функция запуска рендера с данными
+      return createCard(name, link);
+    },
+  },
+  elementsContainer
+); // контейнер с готовыми картами
+
+section.renderItems(); // запуск функции из класса Section, где мы бежим по массиву карточек
+
+const validSettings = {
+  formSelector: ".popup__inputs",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_inactive",
+  inputErrorClass: "popup__input_border-error",
+  errorClass: "popup__input-error_active",
 };
 
-const validationInfo = new FormValidator(settings, formInputsInfo);
-const validationCard = new FormValidator(settings, formInputsCard);
-validationInfo.enableValidation();
-validationCard.enableValidation();
+const formCardValidation = new FormValidator(formElementCard, validSettings);
+const formInfoValidation = new FormValidator(formElementInfo, validSettings);
+formCardValidation.enableValidation();
+formInfoValidation.enableValidation();
 
-function submitNewCard(event) {
-  event.preventDefault();
-  const card = createCard(popInputMestoName.value, popInputMestoLink.value);
-  elementsContainer.prepend(card);
-  popInputMestoName.value = '';
-  popInputMestoLink.value = '';
-  validationCard.resetValidation();
-  closePopup(popupMesto);
-}
-
-formInputsCard.addEventListener("submit", submitNewCard);
+imagePopup.setEventListeners();
+formInfo.setEventListeners();
+cardForm.setEventListeners();
