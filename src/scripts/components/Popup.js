@@ -7,7 +7,6 @@ export default class Popup {
   }
 
   setEventListeners() {
-    this._closeButton.addEventListener("click", this.closePopup);
     this._popup.addEventListener("mousedown", this._handleClose);
   }
 

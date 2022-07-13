@@ -24,6 +24,14 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
+const validSettings = {
+  formSelector: ".popup__inputs",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_inactive",
+  inputErrorClass: "popup__input_border-error",
+  errorClass: "popup__input-error_active",
+};
 
 const profileEditButton = document.querySelector(".profile__edit-button");
 const cardsAddButton = document.querySelector(".profile__add-button");
@@ -51,5 +59,6 @@ export {
   inputCardLink,
   cardTemplate,
   elementsContainer,
-  initialCards
+  initialCards,
+  validSettings
 };

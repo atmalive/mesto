@@ -7,8 +7,6 @@ import UserInfo from "../scripts/components/UserInfo.js";
 import {
   inputInfoName,
   inputInfoJob,
-  inputCardName,
-  inputCardLink,
   profileTitle,
   profileSubtitle,
   elementsContainer,
@@ -18,7 +16,8 @@ import {
   cardTemplate,
   formElementInfo,
   initialCards,
-} from "../scripts/constants.js";
+  validSettings
+} from "../scripts/utils/constants.js";
 import "../pages/index.css";
 
 const imagePopup = new PopupWithImage(".popup_type_img");
@@ -44,8 +43,9 @@ const formInfo = new PopupWithForm(".popup_type_info", {
 
 profileEditButton.addEventListener("click", () => {
   formInfoValidation.resetForm();
-  inputInfoName.value = userInfo.getUserInfo().name;
-  inputInfoJob.value = userInfo.getUserInfo().description;
+  const {name, description} = userInfo.getUserInfo();
+  inputInfoName.value = name;
+  inputInfoJob.value = description;
   formInfo.openPopup();
 });
 
@@ -74,15 +74,6 @@ const section = new Section(
 ); // контейнер с готовыми картами
 
 section.renderItems();
-
-const validSettings = {
-  formSelector: ".popup__inputs",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_inactive",
-  inputErrorClass: "popup__input_border-error",
-  errorClass: "popup__input-error_active",
-};
 
 const formCardValidation = new FormValidator(formElementCard, validSettings);
 const formInfoValidation = new FormValidator(formElementInfo, validSettings);
