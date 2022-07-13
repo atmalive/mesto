@@ -25,51 +25,24 @@ const initialCards = [
   },
 ];
 
-const popup = document.querySelectorAll(".popup");
-
-const popupInfo = document.querySelector(".popup_type_info");
-const popupInfoCloseButton = popupInfo.querySelector(".popup__close-button");
-const popupSubmitButton = popupInfo.querySelector(".popup__button");
-const popupMesto = document.querySelector(".popup_type_mesto");
-const popupMestoCloseButton = popupMesto.querySelector(".popup__close-button");
-const popupImg = document.querySelector(".popup_type_img");
-const popupImgCloseButton = popupImg.querySelector(".popup__close-button");
-const imgInfo = popupImg.querySelector(".popup__img");
-const textInfo = popupImg.querySelector(".popup__subtitle");
-
 const profileEditButton = document.querySelector(".profile__edit-button");
 const cardsAddButton = document.querySelector(".profile__add-button");
-
 const profileTitle = document.querySelector(".profile__title");
 const profileSubtitle = document.querySelector(".profile__subtitle");
-
-const formElement = document.querySelectorAll(".popup__inputs");
 const formElementInfo = document.querySelector(".popup__inputs_type_info");
 const inputInfoName = formElementInfo.querySelector(".popup__input_type_name");
 const inputInfoJob = formElementInfo.querySelector(".popup__input_type_job");
 const formElementCard = document.querySelector(".popup__inputs_type_card");
 const inputCardName = formElementCard.querySelector(".popup__input_mesto_name");
 const inputCardLink = formElementCard.querySelector(".popup__input_mesto_link");
-
 const cardTemplate = document.querySelector("#element-template");
 const elementsContainer = document.querySelector(".elements");
 
 export {
-  popup,
-  popupInfo,
-  popupInfoCloseButton,
-  popupSubmitButton,
-  popupMesto,
-  popupMestoCloseButton,
-  popupImg,
-  popupImgCloseButton,
-  imgInfo,
-  textInfo,
   profileEditButton,
   cardsAddButton,
   profileTitle,
   profileSubtitle,
-  formElement,
   formElementInfo,
   inputInfoName,
   inputInfoJob,

@@ -5,6 +5,9 @@ export default class Card {
     this._link = link;
     this._cardTemplate = cardTemplate;
     this._handleCardClick = handleCardClick;
+    this._cardElement = this._cardTemplate.content.querySelector(".element").cloneNode(true);
+    this._picture = this._cardElement.querySelector(".element__picture");
+    this._buttonTrash = this._cardElement.querySelector(".element__trash");
   }
 
   _toggleLike(evt) {
@@ -15,19 +18,17 @@ export default class Card {
     event.target.closest(".element").remove();
   }
 
-  addNewCard() {
-    const cardElement = this._cardTemplate.content
-      .querySelector(".element")
-      .cloneNode(true);
-    const picture = cardElement.querySelector(".element__picture");
-    const buttonTrash = cardElement.querySelector(".element__trash");
-    picture.src = this._link;
-    picture.alt = this._name;
-    cardElement.querySelector(".element__text").textContent = this._name;
-    picture.addEventListener("click", this._handleCardClick);
+  _setEventListeners() {
+    this._picture.addEventListener("click", this._handleCardClick);
+    this._buttonTrash.addEventListener("click", this._removeCards);
+    this._cardElement.querySelector(".element__like").addEventListener("click", this._toggleLike);
+  }
 
-    buttonTrash.addEventListener("click", this._removeCards);
-    cardElement.querySelector(".element__like").addEventListener("click", this._toggleLike);
-    return cardElement;
+  addNewCard() {
+    this._picture.src = this._link;
+    this._picture.alt = this._name;
+    this._cardElement.querySelector(".element__text").textContent = this._name;
+    this._setEventListeners();
+    return this._cardElement;
   }
 }
