@@ -1,11 +1,12 @@
-
 export default class Card {
   constructor(name, link, cardTemplate, { handleCardClick }) {
     this._name = name;
     this._link = link;
     this._cardTemplate = cardTemplate;
     this._handleCardClick = handleCardClick;
-    this._cardElement = this._cardTemplate.content.querySelector(".element").cloneNode(true);
+    this._cardElement = this._cardTemplate.content
+      .querySelector(".element")
+      .cloneNode(true);
     this._picture = this._cardElement.querySelector(".element__picture");
     this._buttonTrash = this._cardElement.querySelector(".element__trash");
   }
@@ -21,7 +22,9 @@ export default class Card {
   _setEventListeners() {
     this._picture.addEventListener("click", this._handleCardClick);
     this._buttonTrash.addEventListener("click", this._removeCards);
-    this._cardElement.querySelector(".element__like").addEventListener("click", this._toggleLike);
+    this._cardElement
+      .querySelector(".element__like")
+      .addEventListener("click", this._toggleLike);
   }
 
   addNewCard() {

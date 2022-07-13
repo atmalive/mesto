@@ -5,7 +5,7 @@ export default class Section {
     this._container = elementsContainer;
   }
 
-  addItem(element, isResultRenderer=false) {
+  addItem(element, isResultRenderer = false) {
     if (isResultRenderer) {
       this._container.append(element);
     } else {

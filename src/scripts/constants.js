@@ -51,5 +51,5 @@ export {
   inputCardLink,
   cardTemplate,
   elementsContainer,
-  initialCards,
+  initialCards
 };
