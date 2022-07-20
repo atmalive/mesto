@@ -3,11 +3,11 @@ export default class Popup {
     this._popup = document.querySelector(popupSelector);
     this.closePopup = this.closePopup.bind(this);
     this._handleClose = this._handleClose.bind(this);
-    this._closeButton = this._popup.querySelector(".popup__close-button");
   }
 
   setEventListeners() {
     this._popup.addEventListener("mousedown", this._handleClose);
+
   }
 
   closePopup() {

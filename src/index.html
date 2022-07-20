@@ -13,7 +13,7 @@
         </header>
         <main class="main">
             <section class="profile">
-                <img src="./images/avatar.webp" alt="Аватар" class="profile__avatar">
+                <div class="profile__avatar"></div>
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
                     <button class="profile__edit-button" type="button" aria-label="edit"></button>
@@ -25,7 +25,7 @@
             </section>
         </main>
         <footer class="footer">
-            <p class="footer__copyright">© 2022 Mesto Russia</p>
+            <p class="footer__copyright">© 2022 Mesto Earth</p>
         </footer>
     </div>
     <div class="popup popup_type_info">
@@ -95,14 +95,50 @@
         </div>
     </div>
 
+    <!--  NEW POPUP  -->
+
+    <div class="popup popup_type_confirm">
+        <div class="popup__container">
+            <h3 class="popup__text">Вы уверены?</h3>
+            <button class="popup__close-button" type="button" aria-label="close popup"></button>
+            <button class="popup__button" type="button">Да</button>
+        </div>
+    </div>
+
+
+    <div class="popup popup_type_avatar">
+        <div class="popup__container">
+            <form class="popup__inputs popup__inputs_type_avatar" name="submitLink" novalidate>
+            <h3 class="popup__text">Обновить аватар</h3>
+                <label class="popup__label">
+                    <input
+                            class="popup__input popup__input_avatar popup__input_avatar_link"
+                            name="submitAvatarLink"
+                            placeholder="Ссылка на картинку"
+                            type="url" required
+                            id="input-avatar-link">
+                    <span class="popup__input-error input-avatar-link-error"></span>
+                </label>
+
+                <button class="popup__button" type="submit">Сохранить</button>
+            </form>
+            <button class="popup__close-button" type="button" aria-label="close popup"></button>
+        </div>
+    </div>
+
+
+
+
+<!--    NEW POPUP END-->
+
     <div class="popup popup_type_img">
         <figure class="popup__figure">
             <img src="#" alt="#" class="popup__img">
             <figcaption class="popup__subtitle"></figcaption>
             <button
-            class="popup__close-button popup__close-button_figure"
-            type="button"
-            aria-label="close popup">
+                    class="popup__close-button popup__close-button_figure"
+                    type="button"
+                    aria-label="close popup">
             </button>
         </figure>
     </div>

@@ -1,6 +1,36 @@
 .profile__avatar {
+    position: relative;
+    display: block;
     width: 120px;
     height: 120px;
     border-radius: 50%;
     grid-area: avatar;
+    background-image: url('../../../images/avatar.webp');
+    /*transition: 0.3s;*/
+    cursor: pointer;
+}
+
+.profile__avatar:hover::after {
+    background-color: rgba(0,0,0,.6);
+    content: "";
+    background-image: url('../../../images/avatarButton.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 120px;
+    height: 120px;
+}
+
+.profile__avatar::after {
+    content: "";
+    transition: 0.1s;
+}
+
+
+.profile__avatar:active {
+    border:  0.5px solid #000000;
+    box-sizing: border-box;
 }

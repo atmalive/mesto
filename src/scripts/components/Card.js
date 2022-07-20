@@ -1,9 +1,10 @@
 export default class Card {
-  constructor(name, link, cardTemplate, { handleCardClick }) {
+  constructor(name, link, cardTemplate, { handleCardClick, handleOpenConfirmPopup }) {
     this._name = name;
     this._link = link;
     this._cardTemplate = cardTemplate;
     this._handleCardClick = handleCardClick;
+    this._handleOpenConfirmPopup = handleOpenConfirmPopup;
     this._cardElement = this._cardTemplate.content
       .querySelector(".element")
       .cloneNode(true);
@@ -15,13 +16,13 @@ export default class Card {
     evt.target.classList.toggle("element__like_active");
   }
 
-  _removeCards(event) {
-    event.target.closest(".element").remove();
+  removeCards() {
+    this._cardElement.remove();
   }
 
   _setEventListeners() {
     this._picture.addEventListener("click", this._handleCardClick);
-    this._buttonTrash.addEventListener("click", this._removeCards);
+    this._buttonTrash.addEventListener("click", () => this._handleOpenConfirmPopup(this));
     this._cardElement
       .querySelector(".element__like")
       .addEventListener("click", this._toggleLike);

@@ -5,6 +5,7 @@ import PopupWithImage from "../scripts/components/PopupWithImage.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
 import UserInfo from "../scripts/components/UserInfo.js";
 import {
+  avatarAddButton,
   inputInfoName,
   inputInfoJob,
   profileTitle,
@@ -16,16 +17,24 @@ import {
   cardTemplate,
   formElementInfo,
   initialCards,
-  validSettings
+  validSettings,
+  formPopupAvatar
 } from "../scripts/utils/constants.js";
 import "../pages/index.css";
+import PopupConfirm from "../scripts/components/PopupConfirm";
 
 const imagePopup = new PopupWithImage(".popup_type_img");
 
 function createCard(name, link) {
   const card = new Card(name, link, cardTemplate, {
-    handleCardClick: () => imagePopup.openPopup(name, link),
+    handleCardClick: () => imagePopup.openPopup(name, link), handleOpenConfirmPopup: (card) => {
+      confirmRemoveCard.openPopup()
+      confirmRemoveCard.handleSubmit( () => {
+        card.removeCards()
+      })
+    }
   });
+
   const cardElement = card.addNewCard();
   return cardElement;
 }
@@ -49,6 +58,8 @@ profileEditButton.addEventListener("click", () => {
   formInfo.openPopup();
 });
 
+
+
 const cardForm = new PopupWithForm(".popup_type_mesto", {
   submitForms: (values) => {
     const card = createCard(values.submitCardName, values.submitCardLink);
@@ -60,6 +71,20 @@ cardsAddButton.addEventListener("click", () => {
   formCardValidation.resetForm();
   cardForm.openPopup();
 });
+
+
+const formAvatar = new PopupWithForm(".popup_type_avatar", {
+  submitForms: (values) => {
+    userInfo.setUserInfo(values.submitAvatarLink);
+  },
+});
+
+avatarAddButton.addEventListener("click", () => {
+  formAvatarValidation.resetForm();
+  formAvatar.openPopup();
+});
+
+const confirmRemoveCard = new PopupConfirm(".popup_type_confirm")
 
 // запуск рендера карточек из базы
 const section = new Section(
@@ -77,9 +102,13 @@ section.renderItems();
 
 const formCardValidation = new FormValidator(formElementCard, validSettings);
 const formInfoValidation = new FormValidator(formElementInfo, validSettings);
+const formAvatarValidation = new FormValidator(formPopupAvatar, validSettings);
 formCardValidation.enableValidation();
 formInfoValidation.enableValidation();
+formAvatarValidation.enableValidation();
 
 imagePopup.setEventListeners();
 formInfo.setEventListeners();
 cardForm.setEventListeners();
+formAvatar.setEventListeners();
+confirmRemoveCard.setEventListeners();
