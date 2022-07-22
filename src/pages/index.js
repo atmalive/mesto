@@ -17,12 +17,12 @@ import {
   formElementCard,
   cardTemplate,
   formElementInfo,
-  initialCards,
   validSettings,
   formPopupAvatar,
 } from "../scripts/utils/constants.js";
 import "../pages/index.css";
 import PopupConfirm from "../scripts/components/PopupConfirm";
+
 
 const imagePopup = new PopupWithImage(".popup_type_img");
 
@@ -35,39 +35,37 @@ const api = new Api({
   },
 });
 
-
-function createCard(name, link) {
-  const card = new Card(name, link, cardTemplate, {
-    handleCardClick: () => imagePopup.openPopup(name, link),
-    handleOpenConfirmPopup: (card) => {
+function createCard(card) {
+    const newCard = new Card(card, cardTemplate, {
+    handleCardClick: () => imagePopup.openPopup(card.name, card.link),
+    handleOpenConfirmPopup: (cardItem) => {
       confirmRemoveCard.openPopup();
       confirmRemoveCard.handleSubmit(() => {
-        card.removeCards();
+        cardItem.removeCards();
       });
     },
   });
-
-  const cardElement = card.addNewCard();
+  const cardElement = newCard.addNewCard();
   return cardElement;
 }
-
 
 const userInfo = new UserInfo({
   infoName: profileTitle,
   infoJob: profileSubtitle,
 });
 
-
 api.getUserInfo().then( ({name, about, avatar}) => {
   userInfo.setUserInfo(name, about);
   avatarAddButton.style.backgroundImage = `url(${avatar})`;
 });
 
-
 const formInfo = new PopupWithForm(".popup_type_info", {
-  submitForms: (values) => {
-    userInfo.setUserInfo(values.submitPopupName, values.submitPopupJob);
-  },
+  submitForms: (values) => { 
+    api.updateUserInfo(values.submitPopupName, values.submitPopupJob)
+    .then((data) => {
+      userInfo.setUserInfo(data.name, data.about);
+    });
+  }
 });
 
 profileEditButton.addEventListener("click", () => {
@@ -81,7 +79,6 @@ profileEditButton.addEventListener("click", () => {
 const cardForm = new PopupWithForm(".popup_type_mesto", {
   submitForms: (values) => {
     const card = createCard(values.submitCardName, values.submitCardLink);
-
   },
 });
 
@@ -92,7 +89,10 @@ cardsAddButton.addEventListener("click", () => {
 
 const formAvatar = new PopupWithForm(".popup_type_avatar", {
   submitForms: (values) => {
-    userInfo.setUserInfo(values.submitAvatarLink);
+    api.updateAvatar(values.submitAvatarLink)
+    .then((data) => {
+      avatarAddButton.style.backgroundImage = `url(${data.avatar})`;
+    });
   },
 });
 
@@ -103,30 +103,11 @@ avatarAddButton.addEventListener("click", () => {
 
 const confirmRemoveCard = new PopupConfirm(".popup_type_confirm");
 
+const section = new Section({ renderer: (card) => {return createCard(card); },}, elementsContainer ); 
 
-
-api.getInitialCards().then( (data) => { 
-  const section = new Section({
-      items: data,
-      renderer: (name, link) => {
-        return createCard(name, link);
-      },
-    },
-    elementsContainer
-    
-  ); 
-  section.renderItems();
-}
-
-);
-
-
-
-
-
-
-
-
+api.getInitialCards().then( (data) => {
+  section.renderItems(data);
+});
 
 const formCardValidation = new FormValidator(formElementCard, validSettings);
 const formInfoValidation = new FormValidator(formElementInfo, validSettings);

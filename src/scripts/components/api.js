@@ -20,16 +20,28 @@ export default class Api {
       .then((res) => res.json());
   }
 
-//   getInitialCards() {
-//     return fetch(`${this._baseUrl}/cards`, {
-//       method: "GET",
-//       headers: this._headers,
-//     })
-//       .then((res) => res.json())
-//       .then((result) => {
-//         console.log(result);
-//       });
-//   }
+  updateUserInfo(name, job) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        about: job
+      })
+    })
+    .then((res) => res.json());
+  }
 
+  updateAvatar(link) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: link
+      })
+    })
+    .then((res) => res.json());
+  }
+  
 
 }

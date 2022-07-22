@@ -1,12 +1,10 @@
 export default class Card {
-  constructor(
-    name,
-    link,
-    cardTemplate,
-    { handleCardClick, handleOpenConfirmPopup }
-  ) {
-    this._name = name;
-    this._link = link;
+  constructor(card, cardTemplate, { handleCardClick, handleOpenConfirmPopup }) {
+    this._name = card.name;
+    this._link = card.link;
+    this._likes = card.likes;
+    this._idCard  = card._id;
+    this._idOwner  = card.owner._id;
     this._cardTemplate = cardTemplate;
     this._handleCardClick = handleCardClick;
     this._handleOpenConfirmPopup = handleOpenConfirmPopup;
@@ -15,6 +13,7 @@ export default class Card {
       .cloneNode(true);
     this._picture = this._cardElement.querySelector(".element__picture");
     this._buttonTrash = this._cardElement.querySelector(".element__trash");
+    this._elementCountLike = this._cardElement.querySelector(".element__count");
   }
 
   _toggleLike(evt) {
@@ -35,11 +34,16 @@ export default class Card {
       .addEventListener("click", this._toggleLike);
   }
 
+  _countLikes() {
+    this._elementCountLike.textContent = this._likes.length;
+  }
+
   addNewCard() {
     this._picture.src = this._link;
     this._picture.alt = this._name;
     this._cardElement.querySelector(".element__text").textContent = this._name;
     this._setEventListeners();
+    this._countLikes();
     return this._cardElement;
   }
 }
