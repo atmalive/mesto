@@ -5,9 +5,12 @@
     height: 120px;
     border-radius: 50%;
     grid-area: avatar;
-    background-image: url('../../../images/avatar.webp');
+    /* background-image: url('../../../images/avatar.webp'); */
     /*transition: 0.3s;*/
     cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .profile__avatar:hover::after {

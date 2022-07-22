@@ -17,10 +17,7 @@ export default class Api {
       method: "GET",
       headers: this._headers,
     })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-      });
+      .then((res) => res.json());
   }
 
 //   getInitialCards() {

@@ -26,6 +26,16 @@ import PopupConfirm from "../scripts/components/PopupConfirm";
 
 const imagePopup = new PopupWithImage(".popup_type_img");
 
+
+const api = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-45",
+  headers: {
+    authorization: "e4a8a8c0-6a92-49e4-8795-7abdf4044053",
+    "Content-Type": "application/json",
+  },
+});
+
+
 function createCard(name, link) {
   const card = new Card(name, link, cardTemplate, {
     handleCardClick: () => imagePopup.openPopup(name, link),
@@ -41,10 +51,18 @@ function createCard(name, link) {
   return cardElement;
 }
 
+
 const userInfo = new UserInfo({
   infoName: profileTitle,
   infoJob: profileSubtitle,
 });
+
+
+api.getUserInfo().then( ({name, about, avatar}) => {
+  userInfo.setUserInfo(name, about);
+  avatarAddButton.style.backgroundImage = `url(${avatar})`;
+});
+
 
 const formInfo = new PopupWithForm(".popup_type_info", {
   submitForms: (values) => {
@@ -63,7 +81,7 @@ profileEditButton.addEventListener("click", () => {
 const cardForm = new PopupWithForm(".popup_type_mesto", {
   submitForms: (values) => {
     const card = createCard(values.submitCardName, values.submitCardLink);
-    // section.addItem(card);
+
   },
 });
 
@@ -86,18 +104,9 @@ avatarAddButton.addEventListener("click", () => {
 const confirmRemoveCard = new PopupConfirm(".popup_type_confirm");
 
 
-const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-45",
-  headers: {
-    authorization: "e4a8a8c0-6a92-49e4-8795-7abdf4044053",
-    "Content-Type": "application/json",
-  },
-});
 
 api.getInitialCards().then( (data) => { 
-  console.log(data)
-  const section = new Section(
-    {
+  const section = new Section({
       items: data,
       renderer: (name, link) => {
         return createCard(name, link);
@@ -110,6 +119,10 @@ api.getInitialCards().then( (data) => {
 }
 
 );
+
+
+
+
 
 
 
@@ -130,6 +143,6 @@ confirmRemoveCard.setEventListeners();
 
 
 
-// const data = api.getInitialCards();
+// const data = api.getUserInfo();
 
 // console.log(data);
