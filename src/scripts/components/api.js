@@ -1,18 +1,38 @@
-class Rectangle {
+export default class Api {
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
+  }
 
-    constructor(width, height) {
-        this.width = width;
-        this.height = height;
-    }
+  getInitialCards() {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "GET",
+      headers: this._headers,
+    })
+      .then((res) => res.json());
+  }
 
-    calculateArea() {
-        return this.width * this.height;
-    }
-}
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "GET",
+      headers: this._headers,
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+      });
+  }
 
-class Square extends Rectangle {
+//   getInitialCards() {
+//     return fetch(`${this._baseUrl}/cards`, {
+//       method: "GET",
+//       headers: this._headers,
+//     })
+//       .then((res) => res.json())
+//       .then((result) => {
+//         console.log(result);
+//       });
+//   }
 
-    constructor(width) {
-        super(width, width);
-    }
+
 }

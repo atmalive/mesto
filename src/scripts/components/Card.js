@@ -1,5 +1,10 @@
 export default class Card {
-  constructor(name, link, cardTemplate, { handleCardClick, handleOpenConfirmPopup }) {
+  constructor(
+    name,
+    link,
+    cardTemplate,
+    { handleCardClick, handleOpenConfirmPopup }
+  ) {
     this._name = name;
     this._link = link;
     this._cardTemplate = cardTemplate;
@@ -22,7 +27,9 @@ export default class Card {
 
   _setEventListeners() {
     this._picture.addEventListener("click", this._handleCardClick);
-    this._buttonTrash.addEventListener("click", () => this._handleOpenConfirmPopup(this));
+    this._buttonTrash.addEventListener("click", () =>
+      this._handleOpenConfirmPopup(this)
+    );
     this._cardElement
       .querySelector(".element__like")
       .addEventListener("click", this._toggleLike);
