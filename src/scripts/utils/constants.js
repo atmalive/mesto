@@ -7,7 +7,6 @@ const validSettings = {
   errorClass: "popup__input-error_active",
 };
 
-
 const avatarAddButton = document.querySelector(".profile__avatar")
 const profileEditButton = document.querySelector(".profile__edit-button");
 const cardsAddButton = document.querySelector(".profile__add-button");
@@ -20,7 +19,9 @@ const formElementCard = document.querySelector(".popup__inputs_type_card");
 const formPopupAvatar = document.querySelector(".popup__inputs_type_avatar");
 const cardTemplate = document.querySelector("#element-template");
 const elementsContainer = document.querySelector(".elements");
-
+const buttonAvatar = formPopupAvatar.querySelector(".popup__button")
+const buttonInfo = formElementInfo.querySelector(".popup__button");
+const buttonCard = formElementCard.querySelector(".popup__button");
 
 export {
   avatarAddButton,
@@ -35,5 +36,8 @@ export {
   cardTemplate,
   elementsContainer,
   validSettings,
-  formPopupAvatar
+  formPopupAvatar,
+  buttonInfo,
+  buttonCard,
+  buttonAvatar
 };
