@@ -4,7 +4,7 @@ import Section from "../scripts/components/Section.js";
 import PopupWithImage from "../scripts/components/PopupWithImage.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
 import UserInfo from "../scripts/components/UserInfo.js";
-import Api from "../scripts/components/api.js";
+import Api from "../scripts/components/Api.js";
 import {
   avatarAddButton,
   inputInfoName,
@@ -21,7 +21,7 @@ import {
   formPopupAvatar,
   buttonInfo,
   buttonCard,
-  buttonAvatar,
+  buttonAvatar
 } from "../scripts/utils/constants.js";
 import "../pages/index.css";
 import PopupConfirm from "../scripts/components/PopupConfirm";
@@ -37,7 +37,6 @@ const api = new Api({
 });
 
 function renderLoading(isLoading, submitButton, finalText = "Создать") {
-  console.log(submitButton);
   if (isLoading) {
     submitButton.textContent = "Сохранение...";
   } else {
@@ -45,14 +44,41 @@ function renderLoading(isLoading, submitButton, finalText = "Создать") {
   }
 }
 
-// renderLoading(true, buttonCard);
+const userInfo = new UserInfo({
+  infoName: profileTitle,
+  infoJob: profileSubtitle,
+  avatar: avatarAddButton,
+});
 
-// .finally(() => {
-//   renderLoading(false, buttonCard, "Создать");
-// });
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+// тут деструктурируете ответ от сервера, чтобы было понятнее, что пришло
+  .then(([userData, cards]) => {
+    const {name, about, avatar, _id } = userData;
+    userInfo.setUserInfo(name, about, avatar, _id );
+    section.renderItems(cards);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
+const formInfo = new PopupWithForm(".popup_type_info", {
+  submitForms: (values) => {
+    renderLoading(true, buttonInfo, "Сохранить");
+    api
+      .updateUserInfo(values.submitPopupName, values.submitPopupJob)
+      .then((data) => {
+        userInfo.setUserInfo(data.name, data.about, data.avatar, data._id);
+        formInfo.closePopup();
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        renderLoading(false, buttonInfo, "Сохранить");
+      });
+  },
+});
 
 function createCard(card) {
-  const newCard = new Card(card, cardTemplate, {
+  const newCard = new Card(card, cardTemplate, userInfo.getUserInfo().userId,{
     handleCardClick: () => imagePopup.openPopup(card.name, card.link),
     handleOpenConfirmPopup: (cardItem) => {
       confirmRemoveCard.openPopup();
@@ -60,6 +86,7 @@ function createCard(card) {
         api
           .deleteCard(cardItem._idCard)
           .then(() => {
+
             cardItem.removeCards();
           })
           .catch((err) => console.log(err));
@@ -68,16 +95,18 @@ function createCard(card) {
     putLike: (card) => {
       api
         .setLike(card._idCard)
-        .then(() => {
+        .then((data) => {
           card.handleLike();
+          card.countLikes(data.likes);
         })
         .catch((err) => console.log(err));
     },
     removeDislike: (card) => {
       api
         .deleteLike(card._idCard)
-        .then(() => {
+        .then((data) => {
           card.handleDislike();
+          card.countLikes(data.likes);
         })
         .catch((err) => console.log(err));
     },
@@ -87,37 +116,9 @@ function createCard(card) {
   return cardElement;
 }
 
-const userInfo = new UserInfo({
-  infoName: profileTitle,
-  infoJob: profileSubtitle,
-});
-
-api
-  .getUserInfo()
-  .then(({ name, about, avatar }) => {
-    userInfo.setUserInfo(name, about);
-    avatarAddButton.style.backgroundImage = `url(${avatar})`;
-  })
-  .catch((err) => console.log(err));
-
-const formInfo = new PopupWithForm(".popup_type_info", {
-  submitForms: (values) => {
-    renderLoading(true, buttonInfo, "Сохранить");
-    api
-      .updateUserInfo(values.submitPopupName, values.submitPopupJob)
-      .then((data) => {
-        userInfo.setUserInfo(data.name, data.about);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        renderLoading(false, buttonInfo, "Сохранить");
-      });
-  },
-});
-
 profileEditButton.addEventListener("click", () => {
   formInfoValidation.resetForm();
-  const { name, description } = userInfo.getUserInfo();
+  const { name, description} = userInfo.getUserInfo();
   inputInfoName.value = name;
   inputInfoJob.value = description;
   formInfo.openPopup();
@@ -131,6 +132,7 @@ const cardForm = new PopupWithForm(".popup_type_mesto", {
       .then((data) => {
         const card = createCard(data);
         section.addItem(card);
+        cardForm.closePopup();
       })
       .catch((err) => console.log(err))
       .finally(() => {
@@ -150,7 +152,8 @@ const formAvatar = new PopupWithForm(".popup_type_avatar", {
     api
       .updateAvatar(values.submitAvatarLink)
       .then((data) => {
-        avatarAddButton.style.backgroundImage = `url(${data.avatar})`;
+        userInfo.setUserInfo(data.name, data.about, data.avatar, data._id);
+        formAvatar.closePopup();
       })
       .catch((err) => console.log(err))
       .finally(() => {
@@ -174,13 +177,6 @@ const section = new Section(
   },
   elementsContainer
 );
-
-api
-  .getInitialCards()
-  .then((data) => {
-    section.renderItems(data);
-  })
-  .catch((err) => console.log(err));
 
 const formCardValidation = new FormValidator(formElementCard, validSettings);
 const formInfoValidation = new FormValidator(formElementInfo, validSettings);
