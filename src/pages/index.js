@@ -77,6 +77,8 @@ const formInfo = new PopupWithForm(".popup_type_info", {
   },
 });
 
+const confirmRemoveCard = new PopupConfirm(".popup_type_confirm");
+
 function createCard(card) {
   const newCard = new Card(card, cardTemplate, userInfo.getUserInfo().userId,{
     handleCardClick: () => imagePopup.openPopup(card.name, card.link),
@@ -88,6 +90,7 @@ function createCard(card) {
           .then(() => {
 
             cardItem.removeCards();
+            confirmRemoveCard.closePopup();
           })
           .catch((err) => console.log(err));
       });
@@ -167,7 +170,7 @@ avatarAddButton.addEventListener("click", () => {
   formAvatar.openPopup();
 });
 
-const confirmRemoveCard = new PopupConfirm(".popup_type_confirm");
+
 
 const section = new Section(
   {
